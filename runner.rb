@@ -19,16 +19,12 @@ i = 0
 world = World.new
 world.give_cells_positions
 while i < 5
-  world.board_display.each do |row|
-  p row
- end
 world.generational_life_cycle
-
-
-
  world.give_cells_positions
   world.board_display.each do |row|
-  p row
+  p row.join("")
 end
+puts world.populations_counts
 world.expand_world
+sleep(0.8)
 end
