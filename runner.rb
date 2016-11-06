@@ -1,5 +1,6 @@
 require_relative "world"
 require_relative "world_viewer"
+require "pry"
 def reset_screen
   clear_screen
   move_to_home
@@ -14,15 +15,20 @@ end
 def move_to_home
   print "\e[H"
 end
-
+i = 0
 world = World.new
 world.give_cells_positions
-i = 0
 while i < 5
-reset_screen
+  world.board_display.each do |row|
+  p row
+ end
 world.generational_life_cycle
-Worldviewer.print_world(world.board_display)
-p world.populations_counts
-sleep(1)
+
+
+
+ world.give_cells_positions
+  world.board_display.each do |row|
+  p row
+end
 world.expand_world
 end

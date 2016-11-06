@@ -1,6 +1,5 @@
 class Cell
-  attr_accessor :position
-  attr_reader :status
+  attr_accessor :position, :status
   def initialize
     @status = ["dead", "alive"].sample
     @position = "not placed yet"
@@ -23,7 +22,7 @@ class Cell
   end
 
   def live
-    @status = "alive"
+    self.status = "alive"
   end
 end
 
