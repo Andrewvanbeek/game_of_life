@@ -21,8 +21,8 @@ i = 0
 while i < 5
 reset_screen
 world.generational_life_cycle
-Worldviewer.print_world(world.board_display)
+Worldviewer.print_world(world.board_display_form)
 p world.populations_counts
-sleep(1)
+sleep(2)
 world.expand_world
 end

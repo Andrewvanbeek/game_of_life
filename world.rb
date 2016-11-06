@@ -2,7 +2,7 @@ require_relative "cell"
 class World
   attr_accessor :planet
   def initialize
-    @planet = [Array.new(4){Cell.new}, Array.new(4){Cell.new}, Array.new(4){Cell.new}, Array.new(4){Cell.new}]
+    @planet = Array.new(4, Array.new(4){Cell.new})
   end
 
   def give_cells_positions
@@ -59,16 +59,26 @@ class World
 
   def give_neighbors(cell)
     row, column = cell.position
-    if row == 0
+    if row == 0 && column == 0
+      neighbors = [planet[row, column + 1],
+      planet[row + 1, column], planet[row + 1, column + 1]
+      ].flatten
+    elsif row == 0
       neighbors = [ planet[row, column - 1], planet[row, column + 1],
         planet[row + 1, column - 1], planet[row + 1, column], planet[row + 1, column + 1]
       ].flatten
+    elsif column == 0
+      neighbors = [planet[row - 1, column], planet[row - 1, column + 1],
+      planet[row, column + 1],
+      planet[row + 1, column], planet[row + 1, column + 1]
+      ].flatten
     else
       neighbors = [planet[row - 1, column - 1], planet[row - 1, column], planet[row - 1, column + 1],
-        planet[row, column - 1], planet[row, column + 1],
-        planet[row + 1, column - 1], planet[row + 1, column], planet[row + 1, column + 1]
+      planet[row, column - 1], planet[row, column + 1],
+      planet[row + 1, column - 1], planet[row + 1, column], planet[row + 1, column + 1]
       ].flatten
     end
+
   end
 
   def expand_world
@@ -79,7 +89,7 @@ class World
     give_cells_positions
   end
 
-  def board_display
+  def board_display_form
     print_planet = []
     planet.each do |plane|
       print_planet << plane.map {|cell| cell.display}

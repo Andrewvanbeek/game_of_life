@@ -12,7 +12,7 @@ class Cell
 
   def display
     if self.status == "dead"
-      "[ ]"
+      "_"
     elsif self.status == "alive"
       "(0.0)"
     end
